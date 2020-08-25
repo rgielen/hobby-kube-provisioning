@@ -24,6 +24,10 @@ variable "ssh_keys" {
   type = list
 }
 
+variable "subdomain" {
+  type = string
+}
+
 provider "hcloud" {
   token = var.token
 }
@@ -69,6 +73,11 @@ resource "hcloud_server" "host" {
 
 output "hostnames" {
   value = "${hcloud_server.host.*.name}"
+}
+
+output "hostnames_with_subdomain" {
+  value = formatlist("%s.${var.subdomain}", "${hcloud_server.host.*.name}")
+  #value = formatlist("%s${var.subdomain}", ["Valentina", "Ander", "Olivia", "Sam"])
 }
 
 output "public_ips" {

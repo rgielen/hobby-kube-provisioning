@@ -8,6 +8,7 @@ module "provider" {
   image           = var.hcloud_image
   hosts           = var.node_count
   hostname_format = var.hostname_format
+  subdomain       = var.subdomain
 }
 
 # module "provider" {
@@ -113,8 +114,10 @@ module "dns" {
   email      = var.cloudflare_email
   api_token  = var.cloudflare_api_token
   domain     = var.domain
+  subdomain  = var.subdomain
   public_ips = module.provider.public_ips
   hostnames  = module.provider.hostnames
+  hostnames_with_subdomain  = module.provider.hostnames_with_subdomain
 }
 
 # module "dns" {

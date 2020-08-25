@@ -16,6 +16,10 @@ variable "hostname_format" {
   default = "kube%d"
 }
 
+variable "subdomain" {
+  default = ""
+}
+
 /* hcloud */
 variable "hcloud_token" {
   default = ""
