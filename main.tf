@@ -98,6 +98,7 @@ module "provider" {
 #   public_iprange_offset    = var.libvirt_public_iprange_offset
 #   hosts                    = var.node_count
 #   hostname_format          = var.hostname_format
+#   subdomain                = var.subdomain
 # }
 
 module "swap" {

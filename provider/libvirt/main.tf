@@ -24,6 +24,11 @@ variable "basename" {
   default = "hobbykube"
 }
 
+variable "subdomain" {
+  type = string
+  default = ""
+}
+
 variable "ssh_keys" {
   type    = list
   default = []
@@ -205,6 +210,13 @@ data "template_file" "network_config" {
 
 output "hostnames" {
   value = "${data.template_file.hostnames.*.rendered}"
+  depends_on     = [
+    libvirt_domain.node_domain,
+  ]
+}
+
+output "hostnames_with_subdomain" {
+  value = formatlist("%s.${var.subdomain}", "${data.template_file.hostnames.*.rendered}")
   depends_on     = [
     libvirt_domain.node_domain,
   ]
